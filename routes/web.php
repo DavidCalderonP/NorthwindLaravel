@@ -14,6 +14,12 @@ use \App\Http\Controllers\EmployeesController;
 |
 */
 
+/*\Illuminate\Support\Facades\DB::listen(function($query){
+    var_dump($query->sql);
+        //var_dump($query->bindings);
+        //var_dump($query->time);
+});*/
+
 Route::get('/', function () {
     return view('welcome');
 });

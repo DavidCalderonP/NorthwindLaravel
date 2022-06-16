@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Orders;
-use Employees;
-use Illuminate\Database\Events\TransactionBeginning;
+use App\Models\Employee;
 use Illuminate\Http\Request;
-use \App\Models\Employee;
-use Illuminate\Support\Facades\DB;
 
 class EmployeesController extends Controller
 {
@@ -18,7 +14,17 @@ class EmployeesController extends Controller
      */
     public function index()
     {
+        return Employee::paginate(3);
+    }
 
+    public function getAllSubordinates($id){
+        $bosses = Employee::with('subordinates')->find(2);
+        return $bosses;
+    }
+
+    public function getAllBosses($id){
+        $bosses = Employee::with('bosses')->find(2);
+        return $bosses;
     }
 
     /**
