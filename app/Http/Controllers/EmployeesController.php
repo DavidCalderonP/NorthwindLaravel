@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EmployeesController extends Controller
 {
@@ -12,19 +13,19 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Support\Collection
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Employee::paginate(3);
+        Log::info($request);
+        return Employee::paginate($request->perPage);
     }
 
     public function getAllSubordinates($id){
-        $bosses = Employee::with('subordinates')->find(2);
-        return $bosses;
+        return  Employee::with('subordinates')->find($id);
     }
 
     public function getAllBosses($id){
-        $bosses = Employee::with('bosses')->find(2);
-        return $bosses;
+        return Employee::with('bosses')->find($id);
+
     }
 
     /**
