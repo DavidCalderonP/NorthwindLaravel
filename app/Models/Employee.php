@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+/**
+ * @mixin Builder
+ */
 class Employee extends Model
 {
     use HasFactory;
@@ -16,6 +19,7 @@ class Employee extends Model
     public $timestamps = false;
     protected $hidden = ['created_at','updated_at','deleted_at'];
     protected $attributes = ['EmployeeID', 'LastName', 'FirstName', 'Title', 'TitleOfCourtesy', 'BirthDate', 'HireDate', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'HomePhone', 'Extension', 'Photo', 'Notes', 'ReportsTo', 'PhotoPath', 'Salary'];
+
 
     public function boss(){
         return $this->belongsTo(Employee::class, "ReportsTo");

@@ -24,4 +24,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/employees', EmployeesController::class);
+
